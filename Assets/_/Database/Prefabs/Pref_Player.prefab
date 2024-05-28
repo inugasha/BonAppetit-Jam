@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5859266241214988062}
   - component: {fileID: 7457303337367207382}
   - component: {fileID: 3607429531725893212}
-  m_Layer: 0
+  - component: {fileID: 6892725193131153704}
+  m_Layer: 3
   m_Name: Pref_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d54b532eff9254d97e79e340dd6b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hp: {fileID: 6892725193131153704}
   _rb: {fileID: 5859266241214988062}
   _moveSpeed: 5
 --- !u!114 &3607429531725893212
@@ -113,10 +115,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a449f0662e5d9b4cafd8ee24b9166bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hp: {fileID: 6892725193131153704}
   _defaultWeaponData: {fileID: 11400000, guid: 793f97d3cf3956946a4770467a79db2d, type: 2}
   _weaponGraphicsParent: {fileID: 6694278650708750945}
   _autoDestroyBulletAfter: 7
   _onShoot:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6892725193131153704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587884028984913789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35af9861b7ba7643991ff9735d403b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onDieFeedbacks:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &809229536971840115

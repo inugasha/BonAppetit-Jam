@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private HP _hp;
     [SerializeField] private Rigidbody _rb;
-    [SerializeField] private float _moveSpeed;    
+    [SerializeField] private float _moveSpeed;
 
     private void Awake()
     {
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _hp.m_onDie = OnDie;
         _input.Enable();
     }
 
@@ -31,9 +33,14 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
     }
 
+    private void OnDie()
+    {
+        _canMove = false;
+        _input.Disable();
+    }
+
     private void ApplyMovement()
     {
-        Debug.Log(_locomotionValue);
         _rb.velocity = _locomotionValue * _moveSpeed;
     }
 

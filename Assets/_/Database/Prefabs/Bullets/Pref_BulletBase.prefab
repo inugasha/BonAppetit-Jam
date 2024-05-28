@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 9074750465047524793}
   - component: {fileID: 6644410873167763984}
   - component: {fileID: 2723877226984783283}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pref_BulletBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +129,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffade31d44c8e64db4a22450c1e96e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _excludeLayerForPlayerBullet:
+    serializedVersion: 2
+    m_Bits: 8
+  _excludeLayerForEnemyBullet:
+    serializedVersion: 2
+    m_Bits: 64
+  _collider: {fileID: 2723877226984783283}
 --- !u!136 &2723877226984783283
 CapsuleCollider:
   m_ObjectHideFlags: 0

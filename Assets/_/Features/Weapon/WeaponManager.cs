@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 using Utils.Runtime;
 
 public class WeaponManager : MonoBehaviour
 {
+    [SerializeField] private HP _hp;
     [SerializeField] private WeaponData _defaultWeaponData;
     [SerializeField] private Transform _weaponGraphicsParent;
     [SerializeField] private float _autoDestroyBulletAfter = 7;
@@ -14,12 +16,17 @@ public class WeaponManager : MonoBehaviour
     private void Awake()
     {
         _input = new Player_Actions();
+        _input.Combat.Fire.performed += OnFire_Performed;
         _input.Combat.Fire.started += OnFire_Started;
         _input.Combat.Fire.canceled += OnFire_Canceled;
 
         _shootTimer = new(0, OnShootTimerOver);
         SetupWeapon(_defaultWeaponData);
+    }
 
+    private void Start()
+    {
+        _hp.m_onDie += OnDie;
         _input.Enable();
     }
 
@@ -29,12 +36,21 @@ public class WeaponManager : MonoBehaviour
 
         _input.Combat.Fire.started -= OnFire_Started;
         _input.Combat.Fire.canceled -= OnFire_Canceled;
+
+        _hp.m_onDie -= OnDie;
     }
 
     private void Update()
     {
         if (!_onShooting || !_currentWeaponData.m_automatic) return;
         Shoot();
+    }
+
+    private void OnDie()
+    {
+        _canShoot = false;
+        _onShooting = false;
+        _input.Disable();
     }
 
     private void SetupWeapon(WeaponData data)
@@ -62,10 +78,22 @@ public class WeaponManager : MonoBehaviour
         _canShoot = false;
         _currentAmmo--;
 
-        //Instantiate
-        Bullet bullet = Instantiate(_currentWeaponData.m_bulletGraphics);
-        bullet.transform.position = _weaponGraphics.transform.position + _weaponGraphics.m_bulletSpawnPosition.position;
-        bullet.Setup(_currentWeaponData.m_bulletSpeed, _autoDestroyBulletAfter);
+        for (int i = 0; i < _currentWeaponData.m_bulletCountOnShoot; i++)
+        {
+            Bullet bullet = Instantiate(_currentWeaponData.m_bulletGraphics);
+            bullet.transform.position = _weaponGraphics.transform.localPosition + _weaponGraphics.m_bulletSpawnPosition.position;
+            bullet.transform.rotation = _weaponGraphics.transform.rotation;
+            bullet.Setup(_currentWeaponData.m_bulletSpeed, _autoDestroyBulletAfter, true);
+
+            if (_currentWeaponData.m_shootAngleRange != 0)
+            {
+                float angle = Random.Range(-_currentWeaponData.m_shootAngleRange, _currentWeaponData.m_shootAngleRange);
+                Quaternion additionalRotation = Quaternion.Euler(0f, angle, 0f);
+                Quaternion finalRotation = bullet.transform.rotation * additionalRotation;
+
+                bullet.transform.rotation = finalRotation;
+            }            
+        }
 
         _onShoot.Invoke();
 
@@ -79,13 +107,20 @@ public class WeaponManager : MonoBehaviour
 
     private void OnFire_Started(InputAction.CallbackContext context)
     {
+        if (!_currentWeaponData.m_automatic) return;
+        Shoot();
         _onShooting = true;
-        if (!_currentWeaponData.m_automatic) Shoot();
     }
 
     private void OnFire_Canceled(InputAction.CallbackContext context)
     {
         _onShooting = false;
+    }
+
+    private void OnFire_Performed(InputAction.CallbackContext context)
+    {
+        if (_currentWeaponData.m_automatic) return;
+        Shoot();
     }
 
     private WeaponData _currentWeaponData;
