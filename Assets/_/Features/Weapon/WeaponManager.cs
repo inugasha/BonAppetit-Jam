@@ -92,10 +92,11 @@ public class WeaponManager : MonoBehaviour
                 Quaternion finalRotation = bullet.transform.rotation * additionalRotation;
 
                 bullet.transform.rotation = finalRotation;
-            }            
+            }
         }
 
         _onShoot.Invoke();
+        _weaponGraphics.m_onShoot.Invoke();
 
         _shootTimer.Start();
     }
