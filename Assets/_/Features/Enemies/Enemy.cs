@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField, BoxGroup("Weapon")] private UnityEvent _onShoot;
     [SerializeField, BoxGroup("Weapon")] private WeaponData _weaponData;
+    [SerializeField, BoxGroup("Weapon")] private PickupWeapon _pickupWeaponPrefab;
     [SerializeField, BoxGroup("Weapon")] private float _autoDestroyBulletAfter = 7;
     [SerializeField, BoxGroup("Weapon")] private float _waitingTimeBeforeShootPlayer;
 
@@ -87,6 +88,8 @@ public class Enemy : MonoBehaviour
     private void OnDie()
     {
         //TODO dropper arme par terre
+        PickupWeapon pickupWeapon = Instantiate(_pickupWeaponPrefab, transform.position, Quaternion.identity);
+        pickupWeapon.Setup(_weaponData);
 
         _agent.isStopped = true;
         _agent.velocity = Vector3.zero;
