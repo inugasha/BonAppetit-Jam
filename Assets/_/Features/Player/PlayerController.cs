@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _hp.m_onDie = OnDie;
+        _hp.m_onDie += OnDie;
         _input.Enable();
     }
 
@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     {
         _input.Locomotion.Locomotion.performed -= OnLocomotion_Performed;
         _input.Locomotion.Aiming.performed -= OnAiming_Performed;
+
+        _hp.m_onDie -= OnDie;
     }
 
     private void FixedUpdate()
