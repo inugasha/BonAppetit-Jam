@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using Utils.Runtime;
 
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private HP _hp;
+    [SerializeField] private PickupZone _pickupZone;
     [SerializeField] private WeaponData _defaultWeaponData;
     [SerializeField] private Transform _weaponGraphicsParent;
     [SerializeField] private float _autoDestroyBulletAfter = 7;
@@ -19,6 +19,8 @@ public class WeaponManager : MonoBehaviour
         _input.Combat.Fire.performed += OnFire_Performed;
         _input.Combat.Fire.started += OnFire_Started;
         _input.Combat.Fire.canceled += OnFire_Canceled;
+
+        _input.Combat.Pickup.performed += OnPickup_Performed;
 
         _shootTimer = new(0, OnShootTimerOver);
         SetupWeapon(_defaultWeaponData);
@@ -57,6 +59,8 @@ public class WeaponManager : MonoBehaviour
     {
         _canShoot = false;
         _onShooting = false;
+
+        if (_shootTimer.IsRunning()) _shootTimer.Stop();
 
         _currentWeaponData = data;
         _shootTimer.ChangeTime(_currentWeaponData.m_timeBetweenShoot);
@@ -122,6 +126,14 @@ public class WeaponManager : MonoBehaviour
     {
         if (_currentWeaponData.m_automatic) return;
         Shoot();
+    }
+
+    private void OnPickup_Performed(InputAction.CallbackContext context)
+    {
+        WeaponData pickupData = _pickupZone.PickupWeapon();
+        if (pickupData == null) return;
+
+        SetupWeapon(pickupData);
     }
 
     private WeaponData _currentWeaponData;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7457303337367207382}
   - component: {fileID: 3607429531725893212}
   - component: {fileID: 6892725193131153704}
+  - component: {fileID: 6815818230232032421}
   m_Layer: 3
   m_Name: Pref_Player
   m_TagString: Player
@@ -117,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: {fileID: 6892725193131153704}
+  _pickupZone: {fileID: 6815818230232032421}
   _defaultWeaponData: {fileID: 11400000, guid: 793f97d3cf3956946a4770467a79db2d, type: 2}
   _weaponGraphicsParent: {fileID: 6694278650708750945}
   _autoDestroyBulletAfter: 7
@@ -138,6 +140,18 @@ MonoBehaviour:
   _onDieFeedbacks:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6815818230232032421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587884028984913789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a71ae46136d6f41833fc8df752ade2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &809229536971840115
 GameObject:
   m_ObjectHideFlags: 0
