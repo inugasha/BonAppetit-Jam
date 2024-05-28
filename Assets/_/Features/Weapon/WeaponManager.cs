@@ -96,7 +96,7 @@ public class WeaponManager : MonoBehaviour
         }
 
         _onShoot.Invoke();
-        _weaponGraphics.m_onShoot.Invoke();
+        _weaponGraphics.m_onPlayerShoot.Invoke();
 
         _shootTimer.Start();
     }

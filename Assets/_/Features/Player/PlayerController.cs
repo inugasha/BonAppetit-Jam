@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private HP _hp;
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _waitingTimeBeforeReloadLevelOnDie;
 
     private void Awake()
     {
@@ -41,6 +42,8 @@ public class PlayerController : MonoBehaviour
         _input.Disable();
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
+
+        GameManager.m_instance.LaunchReloadLevelTimer(_waitingTimeBeforeReloadLevelOnDie);
     }
 
     private void ApplyMovement()

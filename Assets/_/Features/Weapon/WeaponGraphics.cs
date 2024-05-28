@@ -5,5 +5,6 @@ public class WeaponGraphics : MonoBehaviour
 {
     public Transform m_bulletSpawnPosition;
 
-    public UnityEvent m_onShoot;
+    public UnityEvent m_onPlayerShoot;
+    public UnityEvent m_onEnemyShoot;
 }

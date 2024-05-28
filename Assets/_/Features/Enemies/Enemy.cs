@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using Utils.Runtime;
 
 public class Enemy : MonoBehaviour
@@ -13,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField, ShowIf(nameof(_hasPatrol)), BoxGroup("Patrol")] private Patrol _patrol;
     [SerializeField, ShowIf(nameof(_hasPatrol)), BoxGroup("Patrol")] private float _nextPatrolPointOffsetPosition = 0.5f;
 
+    [SerializeField, BoxGroup("Weapon")] private UnityEvent _onShoot;
     [SerializeField, BoxGroup("Weapon")] private WeaponData _weaponData;
     [SerializeField, BoxGroup("Weapon")] private float _autoDestroyBulletAfter = 7;
     [SerializeField, BoxGroup("Weapon")] private float _waitingTimeBeforeShootPlayer;
@@ -59,6 +61,11 @@ public class Enemy : MonoBehaviour
         if (!_playerCanBeShoot) _waitBeforeShoot = true;
         if (!_playerCanBeShoot && _waitingShootTimer.IsRunning()) _waitingShootTimer.Stop();
         if (_playerCanBeShoot && !_waitingShootTimer.IsRunning()) _waitingShootTimer.Start();
+    }
+
+    private void LookAtPlayer()
+    {
+
     }
 
     private void SetupWeapon()
@@ -110,7 +117,9 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        Debug.Log("Shoot");
+        _onShoot.Invoke();
+        _weaponGraphics.m_onEnemyShoot.Invoke();
+
         _shootTimer.Start();
         if (_currentAmmo == 0) Reload();
     }
