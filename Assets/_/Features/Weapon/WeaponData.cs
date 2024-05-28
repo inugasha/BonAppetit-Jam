@@ -11,6 +11,8 @@ public class WeaponData : ScriptableObject
     [BoxGroup("Settings")] public float m_bulletSpeed;
     [BoxGroup("Settings")] public bool m_automatic;
 
+    [BoxGroup("Enemy")] public float m_reloadTime;
+
     [BoxGroup("Visual")] public WeaponGraphics m_weaponGraphics;
     [BoxGroup("Visual")] public Bullet m_bulletGraphics;
 }

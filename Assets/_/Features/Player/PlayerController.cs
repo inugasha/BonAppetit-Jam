@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     {
         _canMove = false;
         _input.Disable();
+        _rb.velocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
     }
 
     private void ApplyMovement()
