@@ -35,6 +35,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField, BoxGroup("Feel")] private MMF_Player[] _mmfPlayers;
 
+    [SerializeField, BoxGroup("Ragdoll")] private GameObject _ragdollParent;
+
     private void Awake()
     {
         _velocityParam = Animator.StringToHash(_velocityParameterName);
@@ -100,6 +102,15 @@ public class Enemy : MonoBehaviour
                 if (lookat == null) continue;
                 lookat.LookAtTarget = _player;
             }
+        }
+    }
+
+    public void EnableRagdoll()
+    {
+        Rigidbody[] rigidbodies = _ragdollParent.GetComponentsInChildren<Rigidbody>();
+        foreach (var item in rigidbodies)
+        {
+            item.isKinematic = false;
         }
     }
 
