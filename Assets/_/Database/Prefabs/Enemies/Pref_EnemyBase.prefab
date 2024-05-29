@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 208385057829724337}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.603, y: 0, z: 0.422}
+  m_LocalPosition: {x: 0.15, y: 0.887, z: 0.342}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1260,6 +1260,7 @@ MonoBehaviour:
   _rotationSpeed: 2
   _resolution: 10
   _gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  _drawGizmo: 0
   _velocityParameterName: Velocity
   _mmfPlayers:
   - {fileID: 2411874969549703314}
