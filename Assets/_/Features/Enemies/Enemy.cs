@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -23,6 +24,9 @@ public class Enemy : MonoBehaviour
     [SerializeField, BoxGroup("Detection")] private float _maxDetectionRange;
     [SerializeField, BoxGroup("Detection")] private float _detectionAngle;
 
+    [SerializeField, BoxGroup("Chase")] private float _alertDuration;
+    [SerializeField, BoxGroup("Chase")] private float _rotationSpeed;
+
     [SerializeField, BoxGroup("Debug")] private int _resolution;
     [SerializeField, BoxGroup("Debug")] private Color _gizmoColor = Color.red;
 
@@ -34,6 +38,7 @@ public class Enemy : MonoBehaviour
         _reloadTimer = new(_weaponData.m_reloadTime, OnReloadTimerOver);
         _shootTimer = new(_weaponData.m_timeBetweenShoot, OnShootTimerOver);
         _waitingShootTimer = new(_waitingTimeBeforeShootPlayer, OnWaitingShootTimerOver);
+        _alertTimer = new(_alertDuration, OnAlertTimerOver);
     }
 
     private void Start()
@@ -47,6 +52,7 @@ public class Enemy : MonoBehaviour
         _reloadTimer.Stop();
         _shootTimer.Stop();
         _waitingShootTimer.Stop();
+        _alertTimer.Stop();
 
         _hp.m_onDie -= OnDie;
     }
@@ -54,22 +60,53 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         if (!_hp.m_isAlive()) return;
-        if (_hasPatrol) MoveToPatrolPoint();
-        if (_playerCanBeShoot) Shoot();
+
+        if (_inAlert)
+        {
+            if (_playerInVision)
+            {
+                _agent.isStopped = true;
+                if (_alertTimer.IsRunning()) _alertTimer.Stop();
+                LookAtPlayer(_lastKnownPlayerPosition);
+                Shoot();
+            }
+            else MoveToLastPlayerPosition();
+        }
+        else
+        {
+            if (!_positionBeforeAlertReached) BackToPositioBeforeAlert();
+            else
+            {
+                if (_hasPatrol) MoveToPatrolPoint();
+            }
+        }
+    }
+
+    private void MoveToLastPlayerPosition()
+    {
+        if (_agent.isStopped) _agent.isStopped = false;
+        _agent.SetDestination(_lastKnownPlayerPosition);
+        float distance = Vector3.Distance(transform.position, _lastKnownPlayerPosition);
+        if (distance <= _nextPatrolPointOffsetPosition && !_playerInVision)
+        {
+            if (!_alertTimer.IsRunning()) _alertTimer.Start();
+        }
     }
 
     private void FixedUpdate()
     {
-        CheckIfPlayerCanBeShoot();
+        CalculatePlayerVisibility();
 
-        if (!_playerCanBeShoot) _waitBeforeShoot = true;
-        if (!_playerCanBeShoot && _waitingShootTimer.IsRunning()) _waitingShootTimer.Stop();
-        if (_playerCanBeShoot && !_waitingShootTimer.IsRunning()) _waitingShootTimer.Start();
+        if (!_playerInVision) _waitBeforeShoot = true;
+        if (!_playerInVision && _waitingShootTimer.IsRunning()) _waitingShootTimer.Stop();
+        if (_playerInVision && !_waitingShootTimer.IsRunning()) _waitingShootTimer.Start();
     }
 
-    private void LookAtPlayer()
+    private void LookAtPlayer(Vector3 targetPosition)
     {
-
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
     }
 
     private void SetupWeapon()
@@ -85,6 +122,15 @@ public class Enemy : MonoBehaviour
         if (Vector3.Distance(transform.position, targetPosition) <= _nextPatrolPointOffsetPosition)
         {
             _patrol.GoToNextPatrolPoint();
+        }
+    }
+
+    private void BackToPositioBeforeAlert()
+    {
+        _agent.SetDestination(_lastPositionBeforeAlert);
+        if (Vector3.Distance(transform.position, _lastPositionBeforeAlert) <= _nextPatrolPointOffsetPosition)
+        {
+            _positionBeforeAlertReached = true;
         }
     }
 
@@ -137,23 +183,30 @@ public class Enemy : MonoBehaviour
         _reloadTimer.Start();
     }
 
-    private void CheckIfPlayerCanBeShoot()
+    private void CalculatePlayerVisibility()
     {
         //Range check
         float distance = Vector3.Distance(transform.position, _player.position);
-        if (distance > _maxDetectionRange) { _playerCanBeShoot = false; return; }
+        if (distance > _maxDetectionRange) { _playerInVision = false; return; }
 
         //Angle check
         Vector3 directionToPlayer = (_player.position - transform.position).normalized;
         float angle = Vector3.Angle(transform.forward, directionToPlayer);
-        if (angle > _detectionAngle) { _playerCanBeShoot = false; return; }
+        if (angle > _detectionAngle / 2) { _playerInVision = false; return; }
 
         //Raycast check
         directionToPlayer = (_player.position - _weaponGraphics.m_bulletSpawnPosition.position).normalized;
-        if (!Physics.Raycast(_weaponGraphics.m_bulletSpawnPosition.position, directionToPlayer, out RaycastHit hit, _maxDetectionRange)) { _playerCanBeShoot = false; return; }
-        if (!hit.collider.CompareTag("Player")) { _playerCanBeShoot = false; return; }
+        if (!Physics.Raycast(_weaponGraphics.m_bulletSpawnPosition.position, directionToPlayer, out RaycastHit hit, _maxDetectionRange)) { _playerInVision = false; return; }
+        if (!hit.collider.CompareTag("Player")) { _playerInVision = false; return; }
 
-        _playerCanBeShoot = true;
+        if (!_inAlert && _positionBeforeAlertReached)
+        {
+            _lastPositionBeforeAlert = transform.position;
+            _positionBeforeAlertReached = false;
+        }
+        _inAlert = true;
+        _playerInVision = true;
+        _lastKnownPlayerPosition = _player.position;
     }
 
     private void OnShootTimerOver()
@@ -170,6 +223,11 @@ public class Enemy : MonoBehaviour
     private void OnWaitingShootTimerOver()
     {
         _waitBeforeShoot = false;
+    }
+
+    private void OnAlertTimerOver()
+    {
+        _inAlert = false;
     }
 
     private void OnDrawGizmos()
@@ -210,7 +268,6 @@ public class Enemy : MonoBehaviour
             triangles[i * 3 + 2] = i + 2;
         }
 
-        // Mise à jour du mesh
         _visionMesh.Clear();
         _visionMesh.vertices = vertices;
         _visionMesh.triangles = triangles;
@@ -223,15 +280,20 @@ public class Enemy : MonoBehaviour
     private WeaponGraphics _weaponGraphics;
     private Transform _player;
     private Mesh _visionMesh;
+    private Vector3 _lastKnownPlayerPosition;
+    private Vector3 _lastPositionBeforeAlert;
 
     private Timer _waitingShootTimer;
     private Timer _shootTimer;
     private Timer _reloadTimer;
+    private Timer _alertTimer;
 
     private bool _canShoot = true;
     private bool _waitBeforeShoot = true;
-    private bool _playerCanBeShoot;
+    private bool _playerInVision;
     private bool _onReload;
+    private bool _inAlert;
+    private bool _positionBeforeAlertReached = true;
 
     private int _currentAmmo;
 }

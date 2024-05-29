@@ -569,7 +569,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
@@ -627,5 +627,7 @@ MonoBehaviour:
   _waitingTimeBeforeShootPlayer: 0.3
   _maxDetectionRange: 20
   _detectionAngle: 60
+  _alertDuration: 3
+  _rotationSpeed: 2
   _resolution: 10
   _gizmoColor: {r: 1, g: 0, b: 0, a: 1}
