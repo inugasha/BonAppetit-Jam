@@ -132,26 +132,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6018649650378911738}
     m_Modifications:
-    - target: {fileID: 2095589307960323867, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
-      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[3].m_Overridden
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2095589307960323867, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
-      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[4].m_Overridden
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2095589307960323867, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
-      propertyPath: m_PropertySheet.m_Gradient.m_Array.Array.data[5].m_Overridden
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2095589307960323867, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
-      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[3].m_Overridden
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3238374646046842636, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5609867973078068471, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
       propertyPath: m_Name
       value: pref_muzzleflash_SMG
@@ -196,8 +176,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2344170293809738289, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
