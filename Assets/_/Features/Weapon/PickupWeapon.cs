@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,6 +7,15 @@ public class PickupWeapon : MonoBehaviour
     [SerializeField] private Transform _weaponGraphicsParent;
     [SerializeField] private UnityEvent _onPickup;
     [SerializeField] private GameObject _ui;
+
+    [SerializeField] private bool _isLoot = false;
+    [SerializeField, HideIf(nameof(_isLoot))] private WeaponData _weaponData;
+
+    private void Awake()
+    {
+        if (_isLoot) return;
+        Setup(_weaponData);
+    }
 
     public void Setup(WeaponData data)
     {
