@@ -618,8 +618,14 @@ MonoBehaviour:
   _hasPatrol: 0
   _patrol: {fileID: 0}
   _nextPatrolPointOffsetPosition: 0.5
+  _onShoot:
+    m_PersistentCalls:
+      m_Calls: []
   _weaponData: {fileID: 11400000, guid: 793f97d3cf3956946a4770467a79db2d, type: 2}
+  _pickupWeaponPrefab: {fileID: 1874703890775325387, guid: 1d7f6c253ac1175489bd6d1d224e0d6d, type: 3}
   _autoDestroyBulletAfter: 7
   _waitingTimeBeforeShootPlayer: 0.3
-  _maxDetectionRange: 50
-  _detectionAngle: 30
+  _maxDetectionRange: 20
+  _detectionAngle: 60
+  _resolution: 10
+  _gizmoColor: {r: 1, g: 0, b: 0, a: 1}

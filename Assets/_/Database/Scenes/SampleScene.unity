@@ -424,10 +424,6 @@ PrefabInstance:
       propertyPath: _patrol
       value: 
       objectReference: {fileID: 637068123}
-    - target: {fileID: 2310346395409698543, guid: f94930ec83de41b4f960562ea74ae617, type: 3}
-      propertyPath: _pickupWeaponPrefab
-      value: 
-      objectReference: {fileID: 1874703890775325387, guid: 1d7f6c253ac1175489bd6d1d224e0d6d, type: 3}
     - target: {fileID: 7115091214752100683, guid: f94930ec83de41b4f960562ea74ae617, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.1579256

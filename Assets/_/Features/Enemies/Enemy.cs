@@ -23,6 +23,9 @@ public class Enemy : MonoBehaviour
     [SerializeField, BoxGroup("Detection")] private float _maxDetectionRange;
     [SerializeField, BoxGroup("Detection")] private float _detectionAngle;
 
+    [SerializeField, BoxGroup("Debug")] private int _resolution;
+    [SerializeField, BoxGroup("Debug")] private Color _gizmoColor = Color.red;
+
     private void Awake()
     {
         SetupWeapon();
@@ -169,8 +172,57 @@ public class Enemy : MonoBehaviour
         _waitBeforeShoot = false;
     }
 
+    private void OnDrawGizmos()
+    {
+        DrawVisionMesh();
+    }
+
+    private void DrawVisionMesh()
+    {
+        if (_visionMesh == null) { _visionMesh = new(); }
+
+        Vector3[] vertices = new Vector3[_resolution + 2];
+        int[] triangles = new int[_resolution * 3];
+
+        vertices[0] = Vector3.zero;
+
+        float halfViewAngle = _detectionAngle / 2f;
+        for (int i = 0; i <= _resolution; i++)
+        {
+            float angle = (i / (float)_resolution) * _detectionAngle - halfViewAngle;
+            Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+            Vector3 vertex = direction * _maxDetectionRange;
+
+            if (float.IsNaN(vertex.x) || float.IsNaN(vertex.y) || float.IsNaN(vertex.z) ||
+                float.IsInfinity(vertex.x) || float.IsInfinity(vertex.y) || float.IsInfinity(vertex.z))
+            {
+                Debug.LogError("Invalid vertex detected");
+                return;
+            }
+
+            vertices[i + 1] = vertex;
+        }
+
+        for (int i = 0; i < _resolution; i++)
+        {
+            triangles[i * 3] = 0;
+            triangles[i * 3 + 1] = i + 1;
+            triangles[i * 3 + 2] = i + 2;
+        }
+
+        // Mise à jour du mesh
+        _visionMesh.Clear();
+        _visionMesh.vertices = vertices;
+        _visionMesh.triangles = triangles;
+        _visionMesh.RecalculateNormals();
+
+        Gizmos.color = _gizmoColor;
+        Gizmos.DrawMesh(_visionMesh, transform.position, transform.rotation);
+    }
+
     private WeaponGraphics _weaponGraphics;
     private Transform _player;
+    private Mesh _visionMesh;
 
     private Timer _waitingShootTimer;
     private Timer _shootTimer;
