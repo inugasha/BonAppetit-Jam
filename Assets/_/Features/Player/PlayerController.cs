@@ -1,14 +1,16 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private HP _hp;
-    [SerializeField] private Rigidbody _rb;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _waitingTimeBeforeReloadLevelOnDie;
-    [SerializeField] private string _velocityParameterName;
+    [SerializeField, BoxGroup("Components")] private HP _hp;
+    [SerializeField, BoxGroup("Components")] private Rigidbody _rb;
+    [SerializeField, BoxGroup("Components")] private Animator _animator;
+
+    [SerializeField, BoxGroup("Settings")] private float _moveSpeed;
+    [SerializeField, BoxGroup("Settings")] private float _waitingTimeBeforeReloadLevelOnDie;
+    [SerializeField, BoxGroup("Settings")] private string _velocityParameterName;
 
     private void Awake()
     {

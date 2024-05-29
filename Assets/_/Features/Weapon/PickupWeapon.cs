@@ -14,14 +14,17 @@ public class PickupWeapon : MonoBehaviour
     private void Awake()
     {
         if (_isLoot) return;
-        Setup(_weaponData);
+        Setup(_weaponData, _weaponData.m_maxAmmo);
     }
 
-    public void Setup(WeaponData data)
+    public void Setup(WeaponData data, int ammoCount)
     {
         _data = data;
+        _ammoCount = ammoCount;
         Instantiate(_data.m_weaponGraphics, _weaponGraphicsParent.position, _weaponGraphicsParent.localRotation, _weaponGraphicsParent);
     }
+
+    public int GetAmmoCount() => _ammoCount;
 
     public void Pickup()
     {
@@ -54,4 +57,5 @@ public class PickupWeapon : MonoBehaviour
 
     private WeaponData _data;
     private bool _canPickup = true;
+    private int _ammoCount;
 }
