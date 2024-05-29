@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
@@ -32,6 +33,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField, BoxGroup("Animation")] private string _velocityParameterName;
 
+    [SerializeField, BoxGroup("Feel")] private MMF_Player[] _mmfPlayers;
+
     private void Awake()
     {
         _velocityParam = Animator.StringToHash(_velocityParameterName);
@@ -47,6 +50,7 @@ public class Enemy : MonoBehaviour
     {
         _hp.m_onDie += OnDie;
         _player = GameManager.m_instance.m_player;
+        SetLootAtFeedbacks();
     }
 
     private void OnDestroy()
@@ -84,6 +88,19 @@ public class Enemy : MonoBehaviour
         }
 
         UpdateAnimatorVelocity();
+    }
+
+    private void SetLootAtFeedbacks()
+    {
+        foreach (var player in _mmfPlayers)
+        {
+            foreach (var item in player.FeedbacksList)
+            {
+                MMF_LookAt lookat = item as MMF_LookAt;
+                if (lookat == null) continue;
+                lookat.LookAtTarget = _player;
+            }
+        }
     }
 
     private void UpdateAnimatorVelocity()

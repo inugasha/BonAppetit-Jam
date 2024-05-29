@@ -993,6 +993,8 @@ MonoBehaviour:
   _resolution: 10
   _gizmoColor: {r: 1, g: 0, b: 0, a: 1}
   _velocityParameterName: Velocity
+  _mmfPlayers:
+  - {fileID: 2411874969549703314}
 --- !u!1001 &5843363651491956574
 PrefabInstance:
   m_ObjectHideFlags: 0
