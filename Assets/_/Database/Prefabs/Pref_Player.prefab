@@ -122,6 +122,7 @@ MonoBehaviour:
   _hp: {fileID: 6892725193131153704}
   _animator: {fileID: 8758642062107656051}
   _pickupZone: {fileID: 6815818230232032421}
+  _pickupWeaponPrefab: {fileID: 1874703890775325387, guid: 1d7f6c253ac1175489bd6d1d224e0d6d, type: 3}
   _defaultWeaponData: {fileID: 11400000, guid: 04200822d1faf444dbfc65eeb7df2f31, type: 2}
   _weaponGraphicsParent: {fileID: 6694278650708750945}
   _autoDestroyBulletAfter: 7

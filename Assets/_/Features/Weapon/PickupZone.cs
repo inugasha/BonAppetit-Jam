@@ -21,11 +21,13 @@ public class PickupZone : MonoBehaviour
         GetNearestWeapon();
     }
 
-    public WeaponData PickupWeapon()
+    public WeaponData PickupWeapon(out int ammoCount)
     {
+        ammoCount = 0;
         if (_nearestWeapon == null || !_nearestWeapon.m_canPickup()) return null;
         _pickupWeapons.Remove(_nearestWeapon);
         WeaponData data = _nearestWeapon.GetWeaponData();
+        ammoCount = _nearestWeapon.GetAmmoCount();
         _nearestWeapon.Pickup();
         _nearestWeapon = null;
 
