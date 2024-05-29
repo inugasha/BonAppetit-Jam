@@ -233,6 +233,10 @@ PrefabInstance:
       value: 12.63
       objectReference: {fileID: 0}
     - target: {fileID: 6546453880404094525, guid: 79bedfe45eaceaf4885c7443a525fbbe, type: 3}
+      propertyPath: _pathThickness
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6546453880404094525, guid: 79bedfe45eaceaf4885c7443a525fbbe, type: 3}
       propertyPath: _patrolPoints.Array.size
       value: 6
       objectReference: {fileID: 0}
