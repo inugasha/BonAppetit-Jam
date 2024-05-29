@@ -35,7 +35,6 @@ public class Patrol : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = _patrolPathColor;
         if (_patrolPoints.Length < 2) return;
         Vector3 point1;
         Vector3 point2;
@@ -52,8 +51,6 @@ public class Patrol : MonoBehaviour
         point2 = _patrolPoints[0].position;
 
         Handles.DrawBezier(point1, point2, point1, point2, _patrolPathColor, null, _pathThickness);
-
-
     }
 
     private int _patrolPointIndex;

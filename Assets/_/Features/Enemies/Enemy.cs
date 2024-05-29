@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField, BoxGroup("Debug")] private int _resolution;
     [SerializeField, BoxGroup("Debug")] private Color _gizmoColor = Color.red;
+    [SerializeField, BoxGroup("Debug")] private bool _drawGizmo;
 
     [SerializeField, BoxGroup("Animation")] private string _velocityParameterName;
 
@@ -286,6 +287,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (!_drawGizmo) return;
         DrawVisionMesh();
     }
 
