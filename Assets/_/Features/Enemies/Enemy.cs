@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField, BoxGroup("Components")] private HP _hp;
     [SerializeField, BoxGroup("Components")] private NavMeshAgent _agent;
     [SerializeField, BoxGroup("Components")] private Transform _weaponGraphicsParent;
+    [SerializeField, BoxGroup("Components")] private Animator _animator;
 
     [SerializeField, BoxGroup("Patrol")] private bool _hasPatrol;
     [SerializeField, ShowIf(nameof(_hasPatrol)), BoxGroup("Patrol")] private Patrol _patrol;
@@ -29,9 +30,11 @@ public class Enemy : MonoBehaviour
     [SerializeField, BoxGroup("Debug")] private int _resolution;
     [SerializeField, BoxGroup("Debug")] private Color _gizmoColor = Color.red;
 
+    [SerializeField, BoxGroup("Animation")] private string _velocityParameterName;
+
     private void Awake()
     {
-        SetupWeapon();
+        _velocityParam = Animator.StringToHash(_velocityParameterName);
         SetupWeapon();
 
         _reloadTimer = new(_weaponData.m_reloadTime, OnReloadTimerOver);
@@ -79,6 +82,14 @@ public class Enemy : MonoBehaviour
                 if (_hasPatrol) MoveToPatrolPoint();
             }
         }
+
+        UpdateAnimatorVelocity();
+    }
+
+    private void UpdateAnimatorVelocity()
+    {
+        float velocity = Mathf.Clamp01(_agent.velocity.magnitude / _agent.speed);
+        _animator.SetFloat(_velocityParam, velocity);
     }
 
     private void MoveToLastPlayerPosition()
@@ -112,6 +123,8 @@ public class Enemy : MonoBehaviour
     {
         _weaponGraphics = Instantiate(_weaponData.m_weaponGraphics, _weaponGraphicsParent);
         _currentAmmo = _weaponData.m_maxAmmo;
+
+        _animator.Play(_weaponData.m_holdAnimationName);
     }
 
     private void MoveToPatrolPoint()
@@ -171,6 +184,7 @@ public class Enemy : MonoBehaviour
 
         _onShoot.Invoke();
         _weaponGraphics.m_onEnemyShoot.Invoke();
+        _animator.Play(_weaponData.m_fireAnimationName);
 
         _shootTimer.Start();
         if (_currentAmmo == 0) Reload();
@@ -296,4 +310,5 @@ public class Enemy : MonoBehaviour
     private bool _positionBeforeAlertReached = true;
 
     private int _currentAmmo;
+    private int _velocityParam;
 }
