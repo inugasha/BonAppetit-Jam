@@ -94,6 +94,12 @@ namespace Utils.Runtime
             _duration = newTime;
         }
 
+        public void AddTime(float timeToAdd)
+        {
+            _remainingTime += timeToAdd;
+            OnValueChanged?.Invoke(_remainingTime);
+        }
+
         public bool IsRunning() => _isRunning;
         public bool IsStarted() => _remainingTime < _duration;
 

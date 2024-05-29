@@ -16,8 +16,8 @@ public class PickupZone : MonoBehaviour
     public void RemovePickupWeapon(PickupWeapon pickup)
     {
         _pickupWeapons.Remove(pickup);
-        if (pickup == _nearestWeapon) _pickupWeapons = null;
-        if (_pickupWeapons.Count == 0) _pickupWeapons = null;
+        if (pickup == _nearestWeapon) _nearestWeapon = null;
+        if (_pickupWeapons.Count == 0) _nearestWeapon = null;
         GetNearestWeapon();
     }
 

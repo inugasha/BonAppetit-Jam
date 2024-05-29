@@ -37,6 +37,7 @@ public class PickupWeapon : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         if (!other.TryGetComponent(out PickupZone zone)) return;
         zone.RemovePickupWeapon(this);
+        ShowHideUI(false);
     }
 
     public WeaponData GetWeaponData() => _data;

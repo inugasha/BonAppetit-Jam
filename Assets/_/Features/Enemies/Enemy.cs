@@ -1,5 +1,4 @@
 using Sirenix.OdinInspector;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -136,12 +135,13 @@ public class Enemy : MonoBehaviour
 
     private void OnDie()
     {
-        //TODO dropper arme par terre
         PickupWeapon pickupWeapon = Instantiate(_pickupWeaponPrefab, transform.position, Quaternion.identity);
         pickupWeapon.Setup(_weaponData);
 
         _agent.isStopped = true;
         _agent.velocity = Vector3.zero;
+
+        GameManager.m_instance.OnEnemyDie();
     }
 
     private void Shoot()
