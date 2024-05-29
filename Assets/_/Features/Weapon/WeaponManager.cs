@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -12,6 +13,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField, BoxGroup("Components")] private PickupWeapon _pickupWeaponPrefab;
     [SerializeField, BoxGroup("Components")] private WeaponData _defaultWeaponData;
     [SerializeField, BoxGroup("Components")] private Transform _weaponGraphicsParent;
+    [SerializeField, BoxGroup("Components")] private TextMeshProUGUI _ammonCountTxt;
 
     [SerializeField, BoxGroup("Settings")] private float _autoDestroyBulletAfter = 7;
 
@@ -76,6 +78,7 @@ public class WeaponManager : MonoBehaviour
 
         _weaponGraphics = Instantiate(_currentWeaponData.m_weaponGraphics, _weaponGraphicsParent);
         _currentAmmo = ammoCount;
+        _ammonCountTxt.text = ammoCount.ToString();
         _animator.Play(_currentWeaponData.m_holdAnimationName);
 
         _canShoot = true;
@@ -86,6 +89,7 @@ public class WeaponManager : MonoBehaviour
         if (!_canShoot || _currentAmmo == 0) return;
         _canShoot = false;
         _currentAmmo--;
+        _ammonCountTxt.text = _currentAmmo.ToString();
 
         for (int i = 0; i < _currentWeaponData.m_bulletCountOnShoot; i++)
         {
