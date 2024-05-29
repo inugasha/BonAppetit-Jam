@@ -36,6 +36,9 @@ public class Enemy : MonoBehaviour
     [SerializeField, BoxGroup("Feel")] private MMF_Player[] _mmfPlayers;
 
     [SerializeField, BoxGroup("Ragdoll")] private GameObject _ragdollParent;
+    [SerializeField, BoxGroup("Ragdoll")] private Rigidbody _rigidbodyToAddForce;
+    [SerializeField, BoxGroup("Ragdoll")] private float _minForce;
+    [SerializeField, BoxGroup("Ragdoll")] private float _maxForce;
 
     private void Awake()
     {
@@ -112,6 +115,15 @@ public class Enemy : MonoBehaviour
         {
             item.isKinematic = false;
         }
+    }
+
+    public void AddForceTo()
+    {
+        float intensity = Random.Range(_minForce, _maxForce);
+        Vector3 direction = transform.position - _player.position;
+        direction.y = 0;
+        Vector3 force = direction.normalized * intensity;
+        _rigidbodyToAddForce.AddForce(force, ForceMode.Impulse);
     }
 
     private void UpdateAnimatorVelocity()
