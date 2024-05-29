@@ -57,7 +57,7 @@ BlendTree:
   m_Name: Locomotion
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 6bea842a3e3e2ee4687aed9cf39c3d97, type: 2}
+    m_Motion: {fileID: 7400000, guid: 6e014da21a31329409bf52fc587e5e86, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -145,7 +145,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: animator_Player
+  m_Name: animator_Character
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Velocity
