@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5849926876811302534}
   - component: {fileID: 1874703890775325387}
   m_Layer: 2
-  m_Name: Pref_PickupWeapon
+  m_Name: Pref_PickupWeapon_Loot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,6 +86,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _ui: {fileID: 4266350871496466040}
+  _isLoot: 1
+  _weaponData: {fileID: 0}
 --- !u!1 &3648528500416798066
 GameObject:
   m_ObjectHideFlags: 0
