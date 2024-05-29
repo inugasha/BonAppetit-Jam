@@ -5,14 +5,18 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private HP _hp;
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private Animator _animator;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _waitingTimeBeforeReloadLevelOnDie;
+    [SerializeField] private string _velocityParameterName;
 
     private void Awake()
     {
         _input = new Player_Actions();
         _input.Locomotion.Locomotion.performed += OnLocomotion_Performed;
         _input.Locomotion.Aiming.performed += OnAiming_Performed;
+
+        _velocityParam = Animator.StringToHash(_velocityParameterName);
     }
 
     private void Start()
@@ -69,6 +73,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 inputValue = context.ReadValue<Vector2>();
         _locomotionValue = new Vector3(inputValue.x, 0, inputValue.y);
+
+        _animator.SetFloat(_velocityParam, Mathf.Clamp01(inputValue.magnitude));
     }
 
     private Player_Actions _input;
@@ -76,4 +82,5 @@ public class PlayerController : MonoBehaviour
     private Vector2 _aimingValue;
 
     private bool _canMove = true;
+    private int _velocityParam;
 }

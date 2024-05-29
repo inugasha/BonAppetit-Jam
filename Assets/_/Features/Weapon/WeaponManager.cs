@@ -6,6 +6,7 @@ using Utils.Runtime;
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private HP _hp;
+    [SerializeField] private Animator _animator;
     [SerializeField] private PickupZone _pickupZone;
     [SerializeField] private WeaponData _defaultWeaponData;
     [SerializeField] private Transform _weaponGraphicsParent;
@@ -72,6 +73,7 @@ public class WeaponManager : MonoBehaviour
 
         _weaponGraphics = Instantiate(_currentWeaponData.m_weaponGraphics, _weaponGraphicsParent);
         _currentAmmo = _currentWeaponData.m_maxAmmo;
+        _animator.Play(_currentWeaponData.m_holdAnimationName);
 
         _canShoot = true;
     }
@@ -101,6 +103,7 @@ public class WeaponManager : MonoBehaviour
 
         _onShoot.Invoke();
         _weaponGraphics.m_onPlayerShoot.Invoke();
+        _animator.Play(_currentWeaponData.m_fireAnimationName);
 
         _shootTimer.Start();
     }

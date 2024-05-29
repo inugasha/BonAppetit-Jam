@@ -15,4 +15,7 @@ public class WeaponData : ScriptableObject
 
     [BoxGroup("Visual")] public WeaponGraphics m_weaponGraphics;
     [BoxGroup("Visual")] public Bullet m_bulletGraphics;
+
+    [BoxGroup("Animation")] public string m_holdAnimationName;
+    [BoxGroup("Animation")] public string m_fireAnimationName;
 }

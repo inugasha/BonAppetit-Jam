@@ -103,8 +103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: {fileID: 6892725193131153704}
   _rb: {fileID: 5859266241214988062}
+  _animator: {fileID: 8758642062107656051}
   _moveSpeed: 5
   _waitingTimeBeforeReloadLevelOnDie: 1
+  _velocityParameterName: Velocity
 --- !u!114 &3607429531725893212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: {fileID: 6892725193131153704}
+  _animator: {fileID: 8758642062107656051}
   _pickupZone: {fileID: 6815818230232032421}
   _defaultWeaponData: {fileID: 11400000, guid: 04200822d1faf444dbfc65eeb7df2f31, type: 2}
   _weaponGraphicsParent: {fileID: 6694278650708750945}
