@@ -62,17 +62,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DarkMaskStartSize: 0.72
-    - _DarkNoiseScale: 0.51
-    - _DarkStepMax: 0.497
-    - _DarkStepMin: 0.395
+    - _DarkMaskStartSize: 0.91
+    - _DarkNoiseScale: 0.46
+    - _DarkStepMax: 0.554
+    - _DarkStepMin: 0.409
     - _DecalMeshBiasType: 0
     - _DecalMeshDepthBias: 0
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
-    - _LessBloodSpots: 0.406
-    - _LightMaskStartSize: 1.36
-    - _LightNoiseScale: 0.6
+    - _LessBloodSpots: 0.377
+    - _LightMaskStartSize: 1.53
+    - _LightNoiseScale: 0.79
     - _LightStepMax: 0.712
     - _LightStepMin: 0.292
     - _NarkNoiseMultiplier: 3.42
