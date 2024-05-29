@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private LayerMask _excludeLayerForPlayerBullet;
     [SerializeField] private LayerMask _excludeLayerForEnemyBullet;
     [SerializeField] private Collider _collider;
+    [SerializeField] private float _doorCollisionForce;
 
     private void Update()
     {
@@ -15,6 +16,12 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!_setup) return;
+
+        if (other.CompareTag("Door"))
+        {
+            Vector3 force = transform.forward * _doorCollisionForce;
+            other.attachedRigidbody.AddForceAtPosition(force, transform.position);
+        }
 
         if (other.TryGetComponent(out HP hp))
         {

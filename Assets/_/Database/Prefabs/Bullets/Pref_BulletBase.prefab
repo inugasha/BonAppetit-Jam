@@ -136,6 +136,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _collider: {fileID: 2723877226984783283}
+  _doorCollisionForce: 60
 --- !u!136 &2723877226984783283
 CapsuleCollider:
   m_ObjectHideFlags: 0
