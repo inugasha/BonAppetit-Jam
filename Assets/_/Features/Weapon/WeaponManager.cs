@@ -189,7 +189,9 @@ public class WeaponManager : MonoBehaviour
 
         SetupWeapon(pickupData, ammoCount);
 
-        PickupWeapon pickupWeapon = Instantiate(_pickupWeaponPrefab, transform.position, Quaternion.identity);
+        Vector3 position = transform.position;
+        position.y = 0;
+        PickupWeapon pickupWeapon = Instantiate(_pickupWeaponPrefab, position, Quaternion.identity);
         pickupWeapon.Setup(previousWeaponData, previousAmmoCount);
     }
 

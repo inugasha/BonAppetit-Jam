@@ -21,7 +21,8 @@ public class PickupWeapon : MonoBehaviour
     {
         _data = data;
         _ammoCount = ammoCount;
-        Instantiate(_data.m_weaponGraphics, _weaponGraphicsParent.position, _weaponGraphicsParent.localRotation, _weaponGraphicsParent);
+        WeaponGraphics instance = Instantiate(_data.m_weaponGraphics, _weaponGraphicsParent.position, _weaponGraphicsParent.localRotation, _weaponGraphicsParent);
+        instance.m_graphics.localPosition = Vector3.zero;
     }
 
     public int GetAmmoCount() => _ammoCount;

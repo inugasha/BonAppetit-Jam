@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_bulletSpawnPosition: {fileID: 6411886566066071093}
+  m_graphics: {fileID: 1343382474730386951}
   m_onPlayerShoot:
     m_PersistentCalls:
       m_Calls:
