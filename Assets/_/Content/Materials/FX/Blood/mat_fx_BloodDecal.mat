@@ -62,24 +62,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DarkMaskStartSize: 0.91
-    - _DarkNoiseScale: 0.46
+    - _DarkMaskStartSize: 0.86
+    - _DarkNoiseScale: 0.22
     - _DarkStepMax: 0.554
-    - _DarkStepMin: 0.409
+    - _DarkStepMin: 0.462
     - _DecalMeshBiasType: 0
     - _DecalMeshDepthBias: 0
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
-    - _LessBloodSpots: 0.377
+    - _LessBloodSpots: 0.318
     - _LightMaskStartSize: 1.53
-    - _LightNoiseScale: 0.79
-    - _LightStepMax: 0.712
-    - _LightStepMin: 0.292
+    - _LightNoiseScale: 0.58
+    - _LightStepMax: 0.552
+    - _LightStepMin: 0.245
     - _NarkNoiseMultiplier: 3.42
     - _NormalScale: 1
     - _Roughness: 0.1
     - _WorldPosTiling: 5.92
     m_Colors:
     - _DarkColor: {r: 0.7098039, g: 0.0627451, b: 0, a: 1}
-    - _LightColor: {r: 0.9843138, g: 0.1019608, b: 0, a: 1}
+    - _LightColor: {r: 1, g: 0.10358566, b: 0, a: 1}
   m_BuildTextureStacks: []

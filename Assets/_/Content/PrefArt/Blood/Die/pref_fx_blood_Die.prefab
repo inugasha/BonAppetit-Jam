@@ -4925,6 +4925,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodDecalPrefab: {fileID: 3681097624858850740, guid: 6796b3b4e3b2b9c46a023afd4e462d3c, type: 3}
-  minWidth: 0.6
-  maxWidth: 1.4
-  transitionSpeed: 10
+  minWidth: 0.3
+  maxWidth: 0.9
+  transitionSpeed: 13
