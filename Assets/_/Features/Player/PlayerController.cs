@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField, BoxGroup("Settings")] private float _waitingTimeBeforeReloadLevelOnDie;
     [SerializeField, BoxGroup("Settings")] private string _velocityParameterName;
 
+    [SerializeField, BoxGroup("Ragdoll")] private GameObject _ragdollParent;
+
     private void Awake()
     {
         _input = new Player_Actions();
@@ -42,12 +44,23 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
     }
 
+    public void EnableRagdoll()
+    {
+        Rigidbody[] rigidbodies = _ragdollParent.GetComponentsInChildren<Rigidbody>();
+        foreach (var item in rigidbodies)
+        {
+            item.isKinematic = false;
+        }
+    }
+
     private void OnDie()
     {
         _canMove = false;
         _input.Disable();
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
+
+        _animator.enabled = false;
 
         GameManager.m_instance.LaunchReloadLevelTimer(_waitingTimeBeforeReloadLevelOnDie);
     }
