@@ -3739,7 +3739,7 @@ PrefabInstance:
     - target: {fileID: 3607429531725893212, guid: e93c1c662aeaf4a40aff6be4d6c55799, type: 3}
       propertyPath: _defaultWeaponData
       value: 
-      objectReference: {fileID: 11400000, guid: 15b40f1ab4f40b64bbdbfd14caab7bab, type: 2}
+      objectReference: {fileID: 11400000, guid: 04200822d1faf444dbfc65eeb7df2f31, type: 2}
     - target: {fileID: 5907417794303951127, guid: e93c1c662aeaf4a40aff6be4d6c55799, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

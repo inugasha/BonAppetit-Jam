@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: managedReferences[1067274592409092100].PlayEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1343382474730386951, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343382474730386951, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4806082406353001120, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
       propertyPath: managedReferences[1067274592409092103].Velocity.x
       value: 0.09
@@ -93,8 +101,12 @@ PrefabInstance:
       value: SendEvent
       objectReference: {fileID: 0}
     - target: {fileID: 6411886566066071093, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411886566066071093, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6411886566066071093, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
       propertyPath: m_LocalPosition.z
@@ -135,6 +147,22 @@ PrefabInstance:
     - target: {fileID: 5609867973078068471, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
       propertyPath: m_Name
       value: pref_muzzleflash_SMG
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979853409803165070, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -29056192
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979853409803165070, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979853409803165070, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979853409803165070, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6996869111701640992, guid: e17bbbcff7aeaf041831e692ddaac64c, type: 3}
       propertyPath: m_LocalPosition.x
