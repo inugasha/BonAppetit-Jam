@@ -195,6 +195,8 @@ public class Enemy : MonoBehaviour
         _agent.isStopped = true;
         _agent.velocity = Vector3.zero;
 
+        _animator.enabled = false;
+
         GameManager.m_instance.OnEnemyDie();
     }
 
