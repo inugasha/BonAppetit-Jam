@@ -197,13 +197,17 @@ public class Enemy : MonoBehaviour
 
     private void OnDie()
     {
-        PickupWeapon pickupWeapon = Instantiate(_pickupWeaponPrefab, transform.position, Quaternion.identity);
+        Vector3 position = transform.position;
+        position.y = 0;
+        PickupWeapon pickupWeapon = Instantiate(_pickupWeaponPrefab, position, Quaternion.identity);
         pickupWeapon.Setup(_weaponData, _weaponData.m_maxAmmo);
 
         _agent.isStopped = true;
         _agent.velocity = Vector3.zero;
 
         _animator.enabled = false;
+
+        _weaponGraphics.gameObject.SetActive(false);
 
         GameManager.m_instance.OnEnemyDie();
     }
