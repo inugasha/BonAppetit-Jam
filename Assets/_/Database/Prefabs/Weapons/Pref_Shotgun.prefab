@@ -2188,6 +2188,14 @@ PrefabInstance:
       propertyPath: managedReferences[1067274592409092103].m_ImpulseDefinition.m_TimeEnvelope.m_AttackShape.m_Curve.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1343382474730386951, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343382474730386951, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4806082406353001120, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
       propertyPath: FeedbacksList.Array.size
       value: 6
@@ -2617,8 +2625,12 @@ PrefabInstance:
       value: SendEvent
       objectReference: {fileID: 0}
     - target: {fileID: 6411886566066071093, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411886566066071093, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.111
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6411886566066071093, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
       propertyPath: m_LocalPosition.z
