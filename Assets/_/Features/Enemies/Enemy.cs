@@ -155,7 +155,7 @@ public class Enemy : MonoBehaviour
 
     private void LookAtPlayer(Vector3 targetPosition)
     {
-        Vector3 direction = (targetPosition - transform.position).normalized;
+        Vector3 direction = (targetPosition - _weaponGraphics.m_bulletSpawnPosition.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed);
     }
@@ -202,8 +202,6 @@ public class Enemy : MonoBehaviour
 
     private void Shoot()
     {
-        //TODO appliquer rotation pour que l'arme regarde le joueur, et non pas l'ennemi
-
         if (!_canShoot || _currentAmmo == 0 || _onReload || _waitBeforeShoot || !_hp.m_isAlive()) return;
         _canShoot = false;
         _currentAmmo--;
