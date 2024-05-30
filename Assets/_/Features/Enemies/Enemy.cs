@@ -99,6 +99,15 @@ public class Enemy : MonoBehaviour
         UpdateAnimatorVelocity();
     }
 
+    private void FixedUpdate()
+    {
+        CalculatePlayerVisibility();
+
+        if (!_playerInVision) _waitBeforeShoot = true;
+        if (!_playerInVision && _waitingShootTimer.IsRunning()) _waitingShootTimer.Stop();
+        if (_playerInVision && !_waitingShootTimer.IsRunning()) _waitingShootTimer.Start();
+    }
+
     private void SetLootAtFeedbacks()
     {
         foreach (var player in _mmfPlayers)
@@ -119,6 +128,11 @@ public class Enemy : MonoBehaviour
         {
             item.isKinematic = false;
         }
+    }
+
+    public void HearNoiseAt(Vector3 noisePosition)
+    {
+        Alert(noisePosition);
     }
 
     public void AddForceTo()
@@ -145,15 +159,6 @@ public class Enemy : MonoBehaviour
         {
             if (!_alertTimer.IsRunning()) _alertTimer.Start();
         }
-    }
-
-    private void FixedUpdate()
-    {
-        CalculatePlayerVisibility();
-
-        if (!_playerInVision) _waitBeforeShoot = true;
-        if (!_playerInVision && _waitingShootTimer.IsRunning()) _waitingShootTimer.Stop();
-        if (_playerInVision && !_waitingShootTimer.IsRunning()) _waitingShootTimer.Start();
     }
 
     private void LookAtPlayer(Vector3 targetPosition)
@@ -257,6 +262,11 @@ public class Enemy : MonoBehaviour
         if (!Physics.Raycast(_weaponGraphics.m_bulletSpawnPosition.position, directionToPlayer, out RaycastHit hit, _maxDetectionRange)) { _playerInVision = false; return; }
         if (!hit.collider.CompareTag("Player")) { _playerInVision = false; return; }
 
+        Alert(_player.position);
+    }
+
+    private void Alert(Vector3 lastKnownPosition)
+    {
         if (!_inAlert && _positionBeforeAlertReached)
         {
             _lastPositionBeforeAlert = transform.position;
@@ -265,7 +275,7 @@ public class Enemy : MonoBehaviour
         if (!_inAlert) _onAlertStarted.Invoke();
         _inAlert = true;
         _playerInVision = true;
-        _lastKnownPlayerPosition = _player.position;
+        _lastKnownPlayerPosition = lastKnownPosition;
     }
 
     private void OnShootTimerOver()

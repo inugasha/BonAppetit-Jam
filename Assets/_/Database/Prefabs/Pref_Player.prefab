@@ -131,6 +131,13 @@ MonoBehaviour:
   _onShoot:
     m_PersistentCalls:
       m_Calls: []
+  _noiseRange: 7
+  _noiseDistanceOffset: 1.5
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _noiseRangeColor: {r: 1, g: 0, b: 0, a: 1}
+  _noiseRangeOffsetColor: {r: 1, g: 0, b: 0.78316975, a: 1}
 --- !u!114 &6892725193131153704
 MonoBehaviour:
   m_ObjectHideFlags: 0

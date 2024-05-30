@@ -1,6 +1,8 @@
 using Sirenix.OdinInspector;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Utils.Runtime;
@@ -18,6 +20,12 @@ public class WeaponManager : MonoBehaviour
     [SerializeField, BoxGroup("Settings")] private float _autoDestroyBulletAfter = 7;
 
     [SerializeField, BoxGroup("Feedbacks")] private UnityEvent _onShoot;
+
+    [SerializeField, BoxGroup("Noise")] private float _noiseRange;
+    [SerializeField, BoxGroup("Noise")] private float _noiseDistanceOffset;
+    [SerializeField, BoxGroup("Noise")] private LayerMask _enemyLayerMask;
+    [SerializeField, BoxGroup("Noise")] private Color _noiseRangeColor;
+    [SerializeField, BoxGroup("Noise")] private Color _noiseRangeOffsetColor;
 
     private void Awake()
     {
@@ -113,6 +121,39 @@ public class WeaponManager : MonoBehaviour
         _animator.Play(_currentWeaponData.m_fireAnimationName);
 
         _shootTimer.Start();
+
+        AlertEnemyWithNoise();
+    }
+
+    private void AlertEnemyWithNoise()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _noiseRange, _enemyLayerMask);
+        foreach (var collider in colliders)
+        {
+            if (!collider.TryGetComponent(out Enemy enemy)) continue;
+            if (!collider.TryGetComponent(out NavMeshAgent agent)) continue;
+
+            Vector3 noisePosition = transform.position;
+            NavMeshPath path = new();
+            if (!agent.CalculatePath(noisePosition, path)) continue;
+            float distance = CalculatePathDistance(path);
+
+            if (distance > _noiseRange + _noiseDistanceOffset) continue;
+
+            enemy.HearNoiseAt(noisePosition);
+        }
+    }
+
+    private float CalculatePathDistance(NavMeshPath path)
+    {
+        float distance = 0;
+
+        for (int i = 0; i < path.corners.Length - 1; i++)
+        {
+            distance += Vector3.Distance(path.corners[i], path.corners[i + 1]);
+        }
+
+        return distance;
     }
 
     private void OnShootTimerOver()
@@ -150,6 +191,15 @@ public class WeaponManager : MonoBehaviour
 
         PickupWeapon pickupWeapon = Instantiate(_pickupWeaponPrefab, transform.position, Quaternion.identity);
         pickupWeapon.Setup(previousWeaponData, previousAmmoCount);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = _noiseRangeColor;
+        Gizmos.DrawWireSphere(transform.position, _noiseRange);
+
+        Gizmos.color = _noiseRangeOffsetColor;
+        Gizmos.DrawWireSphere(transform.position, _noiseRange + _noiseDistanceOffset);
     }
 
     private WeaponData _currentWeaponData;
