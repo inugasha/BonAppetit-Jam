@@ -31,8 +31,8 @@ public class Bullet : MonoBehaviour
         if (other.TryGetComponent(out HP hp))
         {
             if (hp.m_isAlive())
-            {
-                hp.Kill();
+            {          
+                hp.Kill(transform.forward);
                 _onHitEnemy.Invoke();
             }
         }

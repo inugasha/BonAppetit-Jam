@@ -195,7 +195,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnDie()
+    private void OnDie(Vector3 bulletDirection)
     {
         Vector3 position = transform.position;
         position.y = 0;

@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField, BoxGroup("Settings")] private string _velocityParameterName;
 
     [SerializeField, BoxGroup("Ragdoll")] private GameObject _ragdollParent;
+    [SerializeField, BoxGroup("Ragdoll")] private Rigidbody _rigidbodyToAddForce;
+    [SerializeField, BoxGroup("Ragdoll")] private float _minForce;
+    [SerializeField, BoxGroup("Ragdoll")] private float _maxForce;
+    [SerializeField, BoxGroup("Ragdoll")] private GameObject[] _bloodParticles;
 
     private void Awake()
     {
@@ -53,12 +57,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnDie()
+    public void AddForceTo()
+    {
+        float intensity = Random.Range(_minForce, _maxForce);
+        Vector3 direction = _bulletHitDirection;
+        direction.y = 0;
+        Vector3 force = direction.normalized * intensity;
+        _rigidbodyToAddForce.AddForce(force, ForceMode.Impulse);
+    }
+
+    public void RotateBloodParticles()
+    {
+        foreach (var item in _bloodParticles)
+        {
+            item.transform.rotation = Quaternion.Euler(_bulletHitDirection);
+        }
+    }
+
+    private void OnDie(Vector3 bulletDirection)
     {
         _canMove = false;
         _input.Disable();
         _rb.velocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
+        _bulletHitDirection = bulletDirection;
 
         _animator.enabled = false;
 
@@ -93,7 +115,9 @@ public class PlayerController : MonoBehaviour
     }
 
     private Player_Actions _input;
+
     private Vector3 _locomotionValue;
+    private Vector3 _bulletHitDirection;
     private Vector2 _aimingValue;
 
     private bool _canMove = true;

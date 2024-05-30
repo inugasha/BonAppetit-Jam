@@ -65,7 +65,7 @@ public class WeaponManager : MonoBehaviour
         Shoot();
     }
 
-    private void OnDie()
+    private void OnDie(Vector3 bulletDirection)
     {
         _canShoot = false;
         _onShooting = false;

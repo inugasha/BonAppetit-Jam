@@ -111,6 +111,13 @@ MonoBehaviour:
   _waitingTimeBeforeReloadLevelOnDie: 0.5
   _velocityParameterName: Velocity
   _ragdollParent: {fileID: 3441829336083241611}
+  _rigidbodyToAddForce: {fileID: 1547599797067807642}
+  _minForce: 55
+  _maxForce: 85
+  _bloodParticles:
+  - {fileID: 7175257974588562630}
+  - {fileID: 1708490145157158250}
+  - {fileID: 32696974234188612}
 --- !u!114 &3607429531725893212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,11 +707,10 @@ MonoBehaviour:
         m_Calls: []
   DebugActive: 0
   FeedbacksList:
+  - rid: 7782737620148682752
+  - rid: 1067274615761403915
   - rid: 1067274614687399941
   - rid: 1067274614687399936
-  - rid: 1067274615761403915
-  - rid: 1067274637838647306
-  - rid: 7782737620148682752
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -952,83 +958,6 @@ MonoBehaviour:
         DeclaredDuration: 0
         ForceSimulationSpeed: 0
         ForcedSimulationSpeed: {x: 0.1, y: 1}
-    - rid: 1067274637838647306
-      type: {class: MMF_AudioSource, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
-      data:
-        Active: 1
-        UniqueID: -1329951782
-        Label: AudioSource
-        ChannelMode: 0
-        Channel: 0
-        MMChannelDefinition: {fileID: 0}
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        AutomatedTargetAcquisition:
-          Mode: 0
-          ChildIndex: 0
-        RandomizeOutput: 0
-        RandomMultiplier: {x: 0.8, y: 1}
-        RandomizeDuration: 0
-        RandomDurationMultiplier: {x: 0.5, y: 2}
-        UseRange: 0
-        RangeDistance: 5
-        UseRangeFalloff: 0
-        RangeFalloff:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        RemapRangeFalloff: {x: 0, y: 1}
-        Owner: {fileID: 7852475499765383196}
-        DebugActive: 0
-        TargetAudioSource: {fileID: 7074898396549215109}
-        Mode: 0
-        RandomSfx:
-        - {fileID: 8300000, guid: 007f3afd15b6140fbbb4585e7dc4449b, type: 3}
-        MinVolume: 1
-        MaxVolume: 1
-        MinPitch: 1
-        MaxPitch: 1
-        SfxAudioMixerGroup: {fileID: 0}
     - rid: 7782737620148682752
       type: {class: MMF_Events, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
@@ -1103,6 +1032,30 @@ MonoBehaviour:
             - m_Target: {fileID: 7457303337367207382}
               m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
               m_MethodName: EnableRagdoll
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 7457303337367207382}
+              m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+              m_MethodName: AddForceTo
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 7457303337367207382}
+              m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+              m_MethodName: RotateBloodParticles
               m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
@@ -1368,6 +1321,11 @@ PrefabInstance:
 --- !u!198 &826154055741423352 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3321700603794535368, guid: 5c82c3054d74e8947aba6b8799d927bc, type: 3}
+  m_PrefabInstance: {fileID: 2697123622684233008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1708490145157158250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3664765822199502938, guid: 5c82c3054d74e8947aba6b8799d927bc, type: 3}
   m_PrefabInstance: {fileID: 2697123622684233008}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2381689558299229821 stripped
@@ -2731,6 +2689,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b56911a78b6327246a555d3a249b969b, type: 3}
+--- !u!1 &32696974234188612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3664765822199502938, guid: b56911a78b6327246a555d3a249b969b, type: 3}
+  m_PrefabInstance: {fileID: 3652406793927451422}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &2069115652527575254 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3321700603794535368, guid: b56911a78b6327246a555d3a249b969b, type: 3}
@@ -2837,6 +2800,11 @@ PrefabInstance:
 --- !u!4 &6137020531122403281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 316216991910605645, guid: 5c82c3054d74e8947aba6b8799d927bc, type: 3}
+  m_PrefabInstance: {fileID: 5857069878054372508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7175257974588562630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3664765822199502938, guid: 5c82c3054d74e8947aba6b8799d927bc, type: 3}
   m_PrefabInstance: {fileID: 5857069878054372508}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &9174240480988100436 stripped
