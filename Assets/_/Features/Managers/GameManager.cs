@@ -60,6 +60,11 @@ public class GameManager : MonoBehaviour
         _timeText.text = value.ToString("F2");
     }
 
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public Transform m_player => _player;
 
     private Timer _reloadLevelTimer;
