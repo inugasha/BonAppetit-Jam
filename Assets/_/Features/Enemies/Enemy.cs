@@ -41,6 +41,9 @@ public class Enemy : MonoBehaviour
     [SerializeField, BoxGroup("Ragdoll")] private float _minForce;
     [SerializeField, BoxGroup("Ragdoll")] private float _maxForce;
 
+    [SerializeField, BoxGroup("Feedbacks")] private UnityEvent _onAlertStarted;
+    [SerializeField, BoxGroup("Feedbacks")] private UnityEvent _onAlertFinished;
+
     private void Awake()
     {
         _velocityParam = Animator.StringToHash(_velocityParameterName);
@@ -259,6 +262,7 @@ public class Enemy : MonoBehaviour
             _lastPositionBeforeAlert = transform.position;
             _positionBeforeAlertReached = false;
         }
+        if (!_inAlert) _onAlertStarted.Invoke();
         _inAlert = true;
         _playerInVision = true;
         _lastKnownPlayerPosition = _player.position;
@@ -283,6 +287,7 @@ public class Enemy : MonoBehaviour
     private void OnAlertTimerOver()
     {
         _inAlert = false;
+        _onAlertFinished.Invoke();
     }
 
     private void OnDrawGizmos()
