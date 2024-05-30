@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f9d22fa85eb43e8af60b22fb69c43c, type: 3}
   m_Name: On
   m_EditorClassIdentifier: 
-  type: 23
+  type: 50
   invert: 0
   timeMultiplier: 1
   colorMode: 0
-  color: {r: 0, g: 0, b: 0, a: 1}
+  color: {r: 0.4433962, g: 0, b: 0, a: 1}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -54,8 +54,8 @@ MonoBehaviour:
   vignetteIntensity: 0
   toonGradientIntensity: 32
   toonDotIntensity: 0.7
-  toonDotRadius: 0.8
-  toonDotCount: 16
+  toonDotRadius: 0.188
+  toonDotCount: 23
   rotationMultiplier: 0
   rotation: 0
   distortion: 1
@@ -72,5 +72,5 @@ MonoBehaviour:
   noiseTexture: {fileID: 2800000, guid: 8a547588e5fea481a97e1deb94c9612c, type: 3}
   contrast: 4
   splashTexture: {fileID: 2800000, guid: 9cbb07cca3115403a9ee5ee3e734e27c, type: 3}
-  sound: {fileID: 0}
+  sound: {fileID: 8300000, guid: 4267b36b1ce8c4beebe7ef729212f7a8, type: 3}
   soundDelay: 0

@@ -53,6 +53,14 @@ PrefabInstance:
       value: Pref_SMG
       objectReference: {fileID: 0}
     - target: {fileID: 1087060179632179450, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
+      propertyPath: managedReferences[1067274637838647301].RandomSfx.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087060179632179450, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
+      propertyPath: managedReferences[1067274637838647301].RandomSfx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: fc4c1ca26a3264a259dfa43a61a2f70e, type: 3}
+    - target: {fileID: 1087060179632179450, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
       propertyPath: managedReferences[1067274592409092100].PlayEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
@@ -80,6 +88,14 @@ PrefabInstance:
       propertyPath: managedReferences[1067274592409092099].BoundParticleSystem
       value: 
       objectReference: {fileID: 3002373408250891633}
+    - target: {fileID: 4806082406353001120, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
+      propertyPath: managedReferences[1067274637838647300].RandomSfx.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4806082406353001120, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
+      propertyPath: managedReferences[1067274637838647300].RandomSfx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: fc4c1ca26a3264a259dfa43a61a2f70e, type: 3}
     - target: {fileID: 4806082406353001120, guid: 4ebfc80d0413827488b561de2af2e952, type: 3}
       propertyPath: managedReferences[1067274592409092099].RandomParticleSystems.Array.size
       value: 1
