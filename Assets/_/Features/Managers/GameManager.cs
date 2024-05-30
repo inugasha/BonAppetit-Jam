@@ -65,7 +65,6 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-
         PlayerController player = FindObjectOfType<PlayerController>();
         if (player == null) { Debug.LogError("Player not found!"); return; }
 
@@ -88,6 +87,9 @@ public class GameManager : MonoBehaviour
 
     public void LaunchReloadLevelTimer(float timer)
     {
+        if (_reloadLevelTimer.IsRunning()) _reloadLevelTimer.Stop();
+        if (_levelDurationTimer.IsRunning()) _levelDurationTimer.Stop();
+
         _reloadLevelTimer.ChangeTime(timer);
         _reloadLevelTimer.Start();
     }
@@ -110,6 +112,9 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if (_reloadLevelTimer.IsRunning()) _reloadLevelTimer.Stop();
+        if (_levelDurationTimer.IsRunning()) _levelDurationTimer.Stop();
+
         currentGameScene = string.IsNullOrWhiteSpace(sceneName) ? currentGameScene : sceneName;
         _onSceneLoadTrigger.Invoke();
     }
