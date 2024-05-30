@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: msk_EnnemiHold
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Ennemi_Cap_Brown
+    m_Weight: 1
+  - m_Path: Ennemi_Cap_Grey
+    m_Weight: 1
+  - m_Path: Ennemi_Hat_Brown
+    m_Weight: 1
+  - m_Path: Ennemi_Hat_Grey
+    m_Weight: 1
+  - m_Path: mesh_Ennemi
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.L
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.L/b_ArmB.L
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.L/b_ArmB.L/b_Hand.L
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.L/b_ArmB.L/b_Hand.L/b_FingersA.L
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.L/b_ArmB.L/b_Hand.L/b_FingersA.L/b_FingersB.L
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.L/b_ArmB.L/b_Hand.L/b_FingersA.L/b_FingersB.L/b_FingersB.L_end
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.L/b_ArmB.L/b_Hand.L/b_ThumbA.L.001
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.L/b_ArmB.L/b_Hand.L/b_ThumbA.L.001/b_ThumbB.L
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.L/b_ArmB.L/b_Hand.L/b_ThumbA.L.001/b_ThumbB.L/b_ThumbB.L_end
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.R
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.R/b_ArmB.R
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.R/b_ArmB.R/b_Hand.R
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.R/b_ArmB.R/b_Hand.R/b_FingersA.R
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.R/b_ArmB.R/b_Hand.R/b_FingersA.R/b_FingersB.R
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.R/b_ArmB.R/b_Hand.R/b_FingersA.R/b_FingersB.R/b_FingersB.R_end
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.R/b_ArmB.R/b_Hand.R/b_ThumbA.R.001
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.R/b_ArmB.R/b_Hand.R/b_ThumbA.R.001/b_ThumbB.R
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_ArmA.R/b_ArmB.R/b_Hand.R/b_ThumbA.R.001/b_ThumbB.R/b_ThumbB.R_end
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_LegA.L
+    m_Weight: 0
+  - m_Path: mesh_Ennemi/b_LegA.L/b_LegB.L
+    m_Weight: 0
+  - m_Path: mesh_Ennemi/b_LegA.L/b_LegB.L/b_FootA.L
+    m_Weight: 0
+  - m_Path: mesh_Ennemi/b_LegA.L/b_LegB.L/b_FootA.L/b_FootB.L
+    m_Weight: 0
+  - m_Path: mesh_Ennemi/b_LegA.L/b_LegB.L/b_FootA.L/b_FootB.L/b_FootB.L_end
+    m_Weight: 0
+  - m_Path: mesh_Ennemi/b_LegA.R
+    m_Weight: 0
+  - m_Path: mesh_Ennemi/b_LegA.R/b_LegB.R
+    m_Weight: 0
+  - m_Path: mesh_Ennemi/b_LegA.R/b_LegB.R/b_FootA.R
+    m_Weight: 0
+  - m_Path: mesh_Ennemi/b_LegA.R/b_LegB.R/b_FootA.R/b_FootB.R
+    m_Weight: 0
+  - m_Path: mesh_Ennemi/b_LegA.R/b_LegB.R/b_FootA.R/b_FootB.R/b_FootB.R_end
+    m_Weight: 0
+  - m_Path: mesh_Ennemi/b_Root
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_Root/b_Hip
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_Root/b_Hip/b_TorsoB
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_Root/b_Hip/b_TorsoB/b_TorsoA
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_Root/b_Hip/b_TorsoB/b_TorsoA/b_Head
+    m_Weight: 1
+  - m_Path: mesh_Ennemi/b_Root/b_Hip/b_TorsoB/b_TorsoA/b_Head/b_Head_end
+    m_Weight: 1
