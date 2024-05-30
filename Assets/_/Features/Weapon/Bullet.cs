@@ -1,4 +1,6 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Bullet : MonoBehaviour
 {
@@ -6,6 +8,9 @@ public class Bullet : MonoBehaviour
     [SerializeField] private LayerMask _excludeLayerForEnemyBullet;
     [SerializeField] private Collider _collider;
     [SerializeField] private float _doorCollisionForce;
+
+    [SerializeField, BoxGroup("Feedbacks")] private UnityEvent _onHitWall;
+    [SerializeField, BoxGroup("Feedbacks")] private UnityEvent _onHitEnemy;
 
     private void Update()
     {
@@ -25,8 +30,13 @@ public class Bullet : MonoBehaviour
 
         if (other.TryGetComponent(out HP hp))
         {
-            if (hp.m_isAlive()) hp.Kill();
+            if (hp.m_isAlive())
+            {
+                hp.Kill();
+                _onHitEnemy.Invoke();
+            }
         }
+        else _onHitWall.Invoke();
 
         Destroy(gameObject);
     }
