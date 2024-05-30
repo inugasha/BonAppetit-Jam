@@ -52,28 +52,31 @@ public class GameManager : MonoBehaviour
         _levelDurationTimer.OnValueChanged += OnLevelDurationTimerValueChanged;
         SceneManager.sceneLoaded += OnSceneLoaded;
         currentGameScene = SceneManager.GetActiveScene().name;
-        if (currentGameScene == "Manager") LoadScene("MainMenu");
+        DontDestroyOnLoad(gameObject);
+        if (currentGameScene == "Manager") ForceLoadScene("MainMenu");
         _setup = true;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
     {
-        if (scene.name == "Manager") return;
-        if (scene.name != "MainMenu")
+        if (scene.name == "Manager" || scene.name == "MainMenu")
         {
-            PlayerController player = FindObjectOfType<PlayerController>();
-            if (player == null) { Debug.LogError("Player not found!"); return; }
-
-            _player = player.transform;
-
-            LevelData levelData = FindObjectOfType<LevelData>();
-            if (levelData == null) { Debug.LogError("LevelData not found!"); return; }
-
-            _levelDuration = levelData.m_levelDuration;
-            _gainDurationOnKill = levelData.m_gainOnKill;
-            _ui.SetActive(true);
+            _ui.SetActive(false);
+            return;
         }
-        else _ui.SetActive(false);
+
+
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player == null) { Debug.LogError("Player not found!"); return; }
+
+        _player = player.transform;
+
+        LevelData levelData = FindObjectOfType<LevelData>();
+        if (levelData == null) { Debug.LogError("LevelData not found!"); return; }
+
+        _levelDuration = levelData.m_levelDuration;
+        _gainDurationOnKill = levelData.m_gainOnKill;
+        _ui.SetActive(true);
 
         _onSceneLoaded.Invoke();
     }
@@ -105,17 +108,15 @@ public class GameManager : MonoBehaviour
         _timeText.text = value.ToString("F2");
     }
 
-    public void ChangeScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-        currentGameScene = sceneName;
-    }
-
     public void LoadScene(string sceneName)
     {
-        string scene = string.IsNullOrWhiteSpace(sceneName) ? currentGameScene : sceneName;
-        SceneManager.LoadScene(scene);
-        currentGameScene = scene;
+        currentGameScene = string.IsNullOrWhiteSpace(sceneName) ? currentGameScene : sceneName;
+        _onSceneLoadTrigger.Invoke();
+    }
+
+    public void LoadDemandedScene()
+    {
+        SceneManager.LoadScene(currentGameScene);
     }
 
     public void StartGame()
@@ -123,6 +124,11 @@ public class GameManager : MonoBehaviour
         OnLevelDurationTimerValueChanged(_levelDuration);
         _levelDurationTimer.ChangeTime(_levelDuration);
         _levelDurationTimer.Start();
+    }
+
+    private void ForceLoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public Transform m_player => _player;

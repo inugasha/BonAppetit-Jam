@@ -18,6 +18,6 @@ public class SceneChangerTrigger : MonoBehaviour
         playerController.enabled = false;
         weaponManager.enabled = false;
 
-        GameManager.m_instance.ChangeScene(_targetedSceneName);
+        GameManager.m_instance.LoadScene(_targetedSceneName);
     }
 }
