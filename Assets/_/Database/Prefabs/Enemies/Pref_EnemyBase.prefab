@@ -925,8 +925,8 @@ MonoBehaviour:
         Mode: 0
         Axis: 3
         AnimateScaleDuration: 0.17
-        RemapCurveZero: 0
-        RemapCurveOne: 1
+        RemapCurveZero: 0.01
+        RemapCurveOne: 1.01
         Offset: 0
         AnimateCurve:
           serializedVersion: 2
@@ -1504,8 +1504,8 @@ MonoBehaviour:
         Mode: 0
         Axis: 3
         AnimateScaleDuration: 0.17
-        RemapCurveZero: 0
-        RemapCurveOne: 1
+        RemapCurveZero: 0.01
+        RemapCurveOne: 1.01
         Offset: 0
         AnimateCurve:
           serializedVersion: 2
@@ -1830,8 +1830,8 @@ MonoBehaviour:
         Mode: 0
         Axis: 3
         AnimateScaleDuration: 0.2
-        RemapCurveZero: 0
-        RemapCurveOne: 1
+        RemapCurveZero: 0.01
+        RemapCurveOne: 1.01
         Offset: 0
         AnimateCurve:
           serializedVersion: 2
