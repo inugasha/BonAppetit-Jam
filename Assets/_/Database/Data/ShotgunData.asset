@@ -20,6 +20,6 @@ MonoBehaviour:
   m_automatic: 0
   m_reloadTime: 3
   m_weaponGraphics: {fileID: 8719077039679718401, guid: 5c7c1d0ea108c3d458f3a85307629396, type: 3}
-  m_bulletGraphics: {fileID: 5500390357464705656, guid: 8176eabfc17b6ed4299176a7c6447279, type: 3}
+  m_bulletGraphics: {fileID: 5500390357464705656, guid: 7eed83c8be07b6547977a55f538e2701, type: 3}
   m_holdAnimationName: ShotgunHold
   m_fireAnimationName: ShotgunFire

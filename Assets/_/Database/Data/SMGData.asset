@@ -20,6 +20,6 @@ MonoBehaviour:
   m_automatic: 1
   m_reloadTime: 3
   m_weaponGraphics: {fileID: 8719077039679718401, guid: 77e8d674cc66d5444b2d3b0ba3151c53, type: 3}
-  m_bulletGraphics: {fileID: 5500390357464705656, guid: 8176eabfc17b6ed4299176a7c6447279, type: 3}
+  m_bulletGraphics: {fileID: 5500390357464705656, guid: 4dab89a538d3c914ca33bdc9eee776d9, type: 3}
   m_holdAnimationName: ThompsonHold
   m_fireAnimationName: ThompsonFire
