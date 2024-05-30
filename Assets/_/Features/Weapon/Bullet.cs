@@ -37,8 +37,7 @@ public class Bullet : MonoBehaviour
             }
         }
         else _onHitWall.Invoke();
-
-        Destroy(gameObject);
+        _setup = false;
     }
 
     public void Setup(float bulletSpeed, float autoDestroyTime, bool isPlayerBullet)
