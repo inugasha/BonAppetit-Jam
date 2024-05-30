@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager m_instance;
 
     [SerializeField] private TextMeshProUGUI _timeText;
+    [SerializeField] private GameObject _ui;
 
     [SerializeField, BoxGroup("Feedbacks")] private UnityEvent _onSceneLoaded;
     [SerializeField, BoxGroup("Feedbacks")] private UnityEvent _onSceneLoadTrigger;
@@ -51,21 +52,28 @@ public class GameManager : MonoBehaviour
         _levelDurationTimer.OnValueChanged += OnLevelDurationTimerValueChanged;
         SceneManager.sceneLoaded += OnSceneLoaded;
         currentGameScene = SceneManager.GetActiveScene().name;
+        if (currentGameScene == "Manager") LoadScene("MainMenu");
         _setup = true;
     }
 
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
     {
-        PlayerController player = FindObjectOfType<PlayerController>();
-        if (player == null) { Debug.LogError("Player not found!"); return; }
+        if (scene.name == "Manager") return;
+        if (scene.name != "MainMenu")
+        {
+            PlayerController player = FindObjectOfType<PlayerController>();
+            if (player == null) { Debug.LogError("Player not found!"); return; }
 
-        _player = player.transform;
+            _player = player.transform;
 
-        LevelData levelData = FindObjectOfType<LevelData>();
-        if (levelData == null) { Debug.LogError("LevelData not found!"); return; }
+            LevelData levelData = FindObjectOfType<LevelData>();
+            if (levelData == null) { Debug.LogError("LevelData not found!"); return; }
 
-        _levelDuration = levelData.m_levelDuration;
-        _gainDurationOnKill = levelData.m_gainOnKill;
+            _levelDuration = levelData.m_levelDuration;
+            _gainDurationOnKill = levelData.m_gainOnKill;
+            _ui.SetActive(true);
+        }
+        else _ui.SetActive(false);
 
         _onSceneLoaded.Invoke();
     }

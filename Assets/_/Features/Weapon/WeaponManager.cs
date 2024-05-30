@@ -50,8 +50,11 @@ public class WeaponManager : MonoBehaviour
     {
         _shootTimer.Stop();
 
+        _input.Combat.Fire.performed -= OnFire_Performed;
         _input.Combat.Fire.started -= OnFire_Started;
         _input.Combat.Fire.canceled -= OnFire_Canceled;
+
+        _input.Combat.Pickup.performed -= OnPickup_Performed;
 
         _hp.m_onDie -= OnDie;
     }
@@ -94,7 +97,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Shoot()
     {
-        if (!_canShoot || _currentAmmo == 0) return;
+        if (!_canShoot || _currentAmmo == 0 || !_hp.m_isAlive()) return;
         _canShoot = false;
         _currentAmmo--;
         _ammonCountTxt.text = _currentAmmo.ToString();
