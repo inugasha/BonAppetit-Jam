@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8253254667069753188}
   - component: {fileID: 6629883784012164249}
   - component: {fileID: 8179017045188944344}
-  - component: {fileID: 2822825897928055282}
   m_Layer: 0
   m_Name: fx_CylinderImpulse_Shell
   m_TagString: Untagged
@@ -4889,13 +4888,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 4
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: -205373118164935138, guid: 80701e6c82c773540806a0efdde5c367, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -4905,20 +4906,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &2822825897928055282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905918357945946090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b693836ef0f2838458880b9c57168073, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _onGameTimeScaleValueChanged: {fileID: 11400000, guid: 5908016e97237cd4482da026c17488ca, type: 2}
-  _particleSystem: {fileID: 6629883784012164249}
 --- !u!1 &5537198456584471401
 GameObject:
   m_ObjectHideFlags: 0
@@ -4930,7 +4917,6 @@ GameObject:
   - component: {fileID: 2353219960868818321}
   - component: {fileID: 2990637353690938049}
   - component: {fileID: 2018145821965893562}
-  - component: {fileID: 8677936612287905400}
   m_Layer: 0
   m_Name: fx_CylinderImpulse_Larger
   m_TagString: Untagged
@@ -9790,13 +9776,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 4
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 1
   m_VertexStreams: 0001030422
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 7090989848982623464, guid: 4bd653afce037904188a61e30d0cac51, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -9806,20 +9794,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8677936612287905400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5537198456584471401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b693836ef0f2838458880b9c57168073, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _onGameTimeScaleValueChanged: {fileID: 11400000, guid: 5908016e97237cd4482da026c17488ca, type: 2}
-  _particleSystem: {fileID: 2990637353690938049}
 --- !u!1 &5857826420453001411
 GameObject:
   m_ObjectHideFlags: 0
@@ -9831,7 +9805,6 @@ GameObject:
   - component: {fileID: 1842880697113443463}
   - component: {fileID: 7668870804301949187}
   - component: {fileID: 8505768123165929352}
-  - component: {fileID: 1524825806048325639}
   m_Layer: 0
   m_Name: fx_CylinderImpulse_Smaller
   m_TagString: Untagged
@@ -14691,13 +14664,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 4
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 1
   m_VertexStreams: 0001030422
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 7090989848982623464, guid: 4bd653afce037904188a61e30d0cac51, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -14707,20 +14682,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &1524825806048325639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5857826420453001411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b693836ef0f2838458880b9c57168073, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _onGameTimeScaleValueChanged: {fileID: 11400000, guid: 5908016e97237cd4482da026c17488ca, type: 2}
-  _particleSystem: {fileID: 7668870804301949187}
 --- !u!1001 &8071637113649826076
 PrefabInstance:
   m_ObjectHideFlags: 0
