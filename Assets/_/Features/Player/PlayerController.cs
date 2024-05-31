@@ -69,14 +69,12 @@ public class PlayerController : MonoBehaviour
     public void RotateBloodParticles()
     {
         Vector3 direction = _bulletHitDirection;
-        direction.y = 0;
+        direction.y = transform.position.y;
+        Quaternion rotation = Quaternion.LookRotation(direction);
 
         foreach (var item in _bloodParticles)
         {
-            item.transform.rotation = Quaternion.LookRotation(direction.normalized);
-
-            //item.transform.forward = direction;
-            //item.transform.rotation = Quaternion.FromToRotation(item.transform.forward, _bulletHitDirection);
+            item.transform.rotation = rotation;
         }
     }
 
