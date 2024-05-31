@@ -6,10 +6,12 @@ public class PickupWeapon : MonoBehaviour
 {
     [SerializeField] private Transform _weaponGraphicsParent;
     [SerializeField] private UnityEvent _onPickup;
-    [SerializeField] private GameObject _ui;
 
     [SerializeField] private bool _isLoot = false;
     [SerializeField, HideIf(nameof(_isLoot))] private WeaponData _weaponData;
+
+    [SerializeField, BoxGroup("Feedback")] private UnityEvent _onEnableEffect;
+    [SerializeField, BoxGroup("Feedback")] private UnityEvent _onDisableEffect;
 
     private void Awake()
     {
@@ -36,7 +38,8 @@ public class PickupWeapon : MonoBehaviour
 
     public void ShowHideUI(bool show)
     {
-        _ui.SetActive(show);
+        if (show) _onEnableEffect.Invoke();
+        else _onDisableEffect.Invoke();
     }
 
     private void OnTriggerEnter(Collider other)
