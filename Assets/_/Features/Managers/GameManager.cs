@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField, BoxGroup("Feedbacks")] private UnityEvent _onSceneLoaded;
     [SerializeField, BoxGroup("Feedbacks")] private UnityEvent _onSceneLoadTrigger;
+    [SerializeField, BoxGroup("Feedbacks")] private UnityEvent _onNewSceneLoaded;
+
+    [SerializeField, BoxGroup("Music")] private AudioSource _source;
+    [SerializeField, BoxGroup("Music")] private AudioClip[] _clips;
 
     //Avoir une scene manager avec le game manager dedans
     //Si un gamemanager existe déja, detreuire l'instance de trop
@@ -51,9 +55,9 @@ public class GameManager : MonoBehaviour
         _levelDurationTimer = new(0, OnLevelDurationTimerOver);
         _levelDurationTimer.OnValueChanged += OnLevelDurationTimerValueChanged;
         SceneManager.sceneLoaded += OnSceneLoaded;
-        currentGameScene = SceneManager.GetActiveScene().name;
+        _currentGameScene = SceneManager.GetActiveScene().name;
         DontDestroyOnLoad(gameObject);
-        if (currentGameScene == "Manager") ForceLoadScene("MainMenu");
+        if (_currentGameScene == "Manager") ForceLoadScene("MainMenu");
         _setup = true;
     }
 
@@ -77,6 +81,7 @@ public class GameManager : MonoBehaviour
         _gainDurationOnKill = levelData.m_gainOnKill;
         _ui.SetActive(true);
 
+        if (_isNewSceneLoaded) _onNewSceneLoaded.Invoke();
         _onSceneLoaded.Invoke();
     }
 
@@ -114,14 +119,15 @@ public class GameManager : MonoBehaviour
     {
         if (_reloadLevelTimer.IsRunning()) _reloadLevelTimer.Stop();
         if (_levelDurationTimer.IsRunning()) _levelDurationTimer.Stop();
+        _isNewSceneLoaded = sceneName != _currentGameScene;
 
-        currentGameScene = string.IsNullOrWhiteSpace(sceneName) ? currentGameScene : sceneName;
+        _currentGameScene = string.IsNullOrWhiteSpace(sceneName) ? _currentGameScene : sceneName;
         _onSceneLoadTrigger.Invoke();
     }
 
     public void LoadDemandedScene()
     {
-        SceneManager.LoadScene(currentGameScene);
+        SceneManager.LoadScene(_currentGameScene);
     }
 
     public void StartGame()
@@ -136,6 +142,16 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void ChangeToNextMusic()
+    {
+        int lastIndex = _audioClipIndex;
+        _audioClipIndex++;
+        _audioClipIndex %= _clips.Length;
+
+        if (lastIndex == _audioClipIndex) return;
+        _source.clip = _clips[_audioClipIndex];
+    }
+
     public Transform m_player => _player;
 
     private Transform _player;
@@ -146,7 +162,10 @@ public class GameManager : MonoBehaviour
     private float _levelDuration;
     private float _gainDurationOnKill;
 
-    private string currentGameScene;
+    private int _audioClipIndex;
+
+    private string _currentGameScene;
 
     private bool _setup;
+    private bool _isNewSceneLoaded;
 }
