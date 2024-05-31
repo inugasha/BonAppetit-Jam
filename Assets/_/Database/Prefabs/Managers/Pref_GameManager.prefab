@@ -164,7 +164,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8342312263257087444}
   - {fileID: 3188658335165404663}
   - {fileID: 917886143528732477}
   - {fileID: 6901705781328909315}
@@ -217,10 +216,36 @@ MonoBehaviour:
         m_CallState: 2
   _onNewSceneLoaded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6946021587653014661}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ChangeToNextMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 9010642896028792753}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _source: {fileID: 9010642896028792753}
   _clips:
   - {fileID: 8300000, guid: 21f107b78abfbe34fb8dd6b87d39c03f, type: 3}
+  - {fileID: 8300000, guid: 20f5a99469bd2664783d5dee4fb87a31, type: 3}
+  - {fileID: 8300000, guid: 117bd42bf797f8f4587424c655ed6722, type: 3}
 --- !u!1 &3793613384676539229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,11 +1379,11 @@ Transform:
   m_GameObject: {fileID: 6849499738729176157}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.750001, y: 1.7029395, z: 1.3419559}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -665.8, y: 100, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8266856331368472822}
+  m_Father: {fileID: 1446527259031562400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &9010642896028792753
 AudioSource:
@@ -1557,7 +1582,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8342312263257087444}
   m_Father: {fileID: 3188658335165404663}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
